@@ -11,12 +11,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     document.getElementById("solveRoom2").addEventListener("click", () => {
-        const jsConcepts = new Set(['closure', 'scope', 'hoisting', ]);
+        const jsConcepts = new Set(['closure', 'scope', 'hoisting', 'async']);
         // 🪲 Bug: What's mssing from JS concepts?
         const reactConcepts = new Set(['components', 'jsx', 'hooks', 'async']);
         // 🪲 Bug: Incorrect function call
-        const commonConcepts = findIntersection(jsConcepts, reactConcepts);
         document.getElementById("room2Result").textContent = `The code to unlock the door is: ${Array.from(commonConcepts).join(', ')}`;
+        const commonConcepts = [...jsConcepts].filter(concept => reactConcepts.has(concept)); // filter method is used to find the common concepts between jsConcepts and reactConcepts.
+        //spread operator [...jsConcepts] to convert the jsConcepts Set into an array
+        //filter() method creates a new array containing only the elements that pass a test
+        //callback function checks checks if each concept in jsConcepts is present in reactConcepts using the has() method
+        document.getElementById("room2Result").textContent = `The code to unlock the door is: ${commonConcepts[0]}`; //the first matching concept is displayed
     });
 
     // 🪲 Bug: Asynchronous function ?
