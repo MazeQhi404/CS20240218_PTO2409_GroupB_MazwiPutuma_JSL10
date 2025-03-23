@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // 🪲 Bug: What's mssing from JS concepts?
         const reactConcepts = new Set(['components', 'jsx', 'hooks', 'async']);
         // 🪲 Bug: Incorrect function call
-        document.getElementById("room2Result").textContent = `The code to unlock the door is: ${Array.from(commonConcepts).join(', ')}`;
         const commonConcepts = [...jsConcepts].filter(concept => reactConcepts.has(concept)); // filter method is used to find the common concepts between jsConcepts and reactConcepts.
         //spread operator [...jsConcepts] to convert the jsConcepts Set into an array
         //filter() method creates a new array containing only the elements that pass a test
@@ -39,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function findMostRecentBook(books) {
     // 🪲 Bug: Logic error
-    return books.reduce((mostRecent, book) => new Date(book.published) < new Date(mostRecent.published) ? book : mostRecent);
+    return books.reduce((mostRecent, book) => new Date(book.published) > new Date(mostRecent.published) ? book : mostRecent);
 }
 
 function findIntersection(setA, setB) {
@@ -51,7 +50,7 @@ function findIntersection(setA, setB) {
 async function navigateLabyrinth(directions) {
     for (let direction of directions) {
         // 🪲 Bug: No delay
-        new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 1000)); // await keyword tells the code to wait for the promise to resolve before moving on to the next line of code.
         console.log(`Navigating: ${direction.step}`,);
     }
     return "Congratulations! You've mastered the essentials of Vanilla JavaScript. Welcome to the world of React, where you'll build powerful and dynamic web applications. Let's dive in!";
